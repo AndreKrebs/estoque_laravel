@@ -1,7 +1,7 @@
 <?php namespace estoque\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-
+// use Request;
 
 class ProdutoController extends Controller{
 
@@ -13,6 +13,19 @@ class ProdutoController extends Controller{
 		if (view()->exists('listagem')) { 
 			return view('listagem')->withProdutos($produtos);
 		}
+	}
+
+	public function mostra($id) {
+		// outra forma de pegar o ID da url
+		// $id = Request::route('id');
+
+		$produto = DB::select('select * from produtos where id = ?', [$id]);
+
+		if(empty($produto)) {
+			return "Esse produto não existe.";
+		}
+
+		return view('detalhes')->with('p', $produto[0]);
 	}
 
 }
