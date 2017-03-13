@@ -10,8 +10,8 @@ class ProdutoController extends Controller{
 		$produtos = DB::select('select * from produtos');
 
 		// valida se a view existe
-		if (view()->exists('listagem')) { 
-			return view('listagem')->withProdutos($produtos);
+		if (view()->exists('produto.listagem')) { 
+			return view('produto.listagem')->with('produtos', $produtos);
 		}
 	}
 
@@ -25,7 +25,7 @@ class ProdutoController extends Controller{
 			return "Esse produto não existe.";
 		}
 
-		return view('detalhes')->with('p', $produto[0]);
+		return view('produto.detalhes')->with('p', $produto[0]);
 	}
 
 }
