@@ -1,7 +1,7 @@
 <?php namespace estoque\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-// use Request;
+use Request;
 
 class ProdutoController extends Controller{
 

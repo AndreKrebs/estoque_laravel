@@ -1,4 +1,4 @@
-@extends('templates.principal')
+@extends('layout.principal')
 
 @section('conteudo')
 
