@@ -42,7 +42,27 @@ class ProdutoController extends Controller{
 		DB::insert('insert into produtos (nome, valor, descricao, quantidade) 
 			values (?, ?, ?, ?)', array($nome, $valor, $descricao, $quantidade));
 
-		return view('produto.adicionado')->with('nome', $nome);	
+		// return view('produto.listagem')->with('nome', $nome);
+
+		// direciona para a tela de listagem
+		// return redirect('/produtos')->withInput();
+
+		// para passar parametros especificos
+		/*
+		return redirect('/produtos')->withInput(Request::only('nome'));
+		*/
+
+		// para negar um parametro
+		/* 
+		return redirect('/usuarios')->withInput(Request::except('senha'));
+		*/
+
+		// outra forma de enviar parametros
+		
+		return redirect()
+		  ->action('ProdutoController@lista')
+		  ->withInput(Request::only('nome'));
+		
 	}
 
 }
