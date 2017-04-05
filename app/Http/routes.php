@@ -5,6 +5,7 @@ Route::get('/', function(){
 });
 
 Route::get('/produtos', 'ProdutoController@lista');
+Route::get('/produtos_json', 'ProdutoController@produtosJson');
 Route::get('/produtos/novo', 'ProdutoController@novo');
 Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
 // ao adicionar o where na rota evitamos o problema de ambiquidade nas rotas,

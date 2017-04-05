@@ -65,4 +65,11 @@ class ProdutoController extends Controller{
 		
 	}
 
+	public function produtosJson() {
+		$produtos = DB::select('select * from produtos');
+ 
+		return $produtos;
+		
+	}
+
 }
