@@ -1,11 +1,12 @@
 <?php namespace estoque\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use estoque\Produto;
 use Request;
 
 class ProdutoController extends Controller{
 
-	public function lista() {
+	/*public function lista() {
 
 		$produtos = DB::select('select * from produtos');
 
@@ -13,9 +14,14 @@ class ProdutoController extends Controller{
 		if (view()->exists('produto.listagem')) { 
 			return view('produto.listagem')->with('produtos', $produtos);
 		}
+	}*/
+
+	public function lista(){
+	    $produtos = Produto::all();
+	    return view('produtos.listagem')->with('produtos', $produtos);
 	}
 
-	public function mostra($id) {
+	/*public function mostra($id) {
 		// outra forma de pegar o ID da url
 		// $id = Request::route('id');
 
@@ -26,6 +32,14 @@ class ProdutoController extends Controller{
 		}
 
 		return view('produto.detalhes')->with('p', $produto[0]);
+	}*/
+
+	public function mostra($id){
+	    $produto = Produto::find($id);
+	    if(empty($produto)) {
+	        return "Esse produto não existe";
+	    }
+	    return view('produto.detalhes')->with('p', $produto);
 	}
 
 	public function novo() {
@@ -33,7 +47,7 @@ class ProdutoController extends Controller{
 		return view('produto.formulario');
 	}
 
-	public function adiciona() {
+	/*public function adiciona() {
 		$nome = Request::input('nome');
 		$valor = Request::input('valor');
 		$descricao = Request::input('descricao');
@@ -48,14 +62,11 @@ class ProdutoController extends Controller{
 		// return redirect('/produtos')->withInput();
 
 		// para passar parametros especificos
-		/*
-		return redirect('/produtos')->withInput(Request::only('nome'));
-		*/
+		//return redirect('/produtos')->withInput(Request::only('nome'));
 
 		// para negar um parametro
-		/* 
-		return redirect('/usuarios')->withInput(Request::except('senha'));
-		*/
+		// return redirect('/usuarios')->withInput(Request::except('senha'));
+		
 
 		// outra forma de enviar parametros
 		
@@ -63,6 +74,17 @@ class ProdutoController extends Controller{
 		  ->action('ProdutoController@lista')
 		  ->withInput(Request::only('nome'));
 		
+	}*/
+
+	public function adiciona(){
+
+	    $params = Request::all();
+	    $produto = new Produto($params);
+	    $produto->save();
+
+	    return redirect()
+	        ->action('ProdutoController@index')
+	        ->withInput(Request::only('nome'));
 	}
 
 	public function produtosJson() {
