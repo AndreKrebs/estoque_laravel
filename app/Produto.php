@@ -11,8 +11,11 @@ class Produto extends Model {
 	// se a tabela não vai gravar os dados nos campos 'updated_at' e 'created_at'
 	public $timestamps = false; 
 
-	// adicionado $fillable para passar array direto na hora de salvar
+	// adicionado $fillable para passar array direto na hora de salvar, Ex.: Produto::create(Request::all());
 	protected $fillable = array('nome', 'descricao', 'valor', 'quantidade');
+
+	// não permite passar um valor diferente para o ID
+	protected $guarded = ['id'];
 
 }
 

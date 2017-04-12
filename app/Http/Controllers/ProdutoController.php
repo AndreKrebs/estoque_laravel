@@ -18,7 +18,7 @@ class ProdutoController extends Controller{
 
 	public function lista(){
 	    $produtos = Produto::all();
-	    return view('produtos.listagem')->with('produtos', $produtos);
+	    return view('produto.listagem')->with('produtos', $produtos);
 	}
 
 	/*public function mostra($id) {
@@ -78,13 +78,27 @@ class ProdutoController extends Controller{
 
 	public function adiciona(){
 
+		// assim...
+		/*
 	    $params = Request::all();
 	    $produto = new Produto($params);
 	    $produto->save();
+		*/
+
+		// ou assim e com menos codigo
+		Produto::create(Request::all());
 
 	    return redirect()
-	        ->action('ProdutoController@index')
+	        ->action('ProdutoController@lista')
 	        ->withInput(Request::only('nome'));
+	}
+
+	public function remove($id){
+	    $produto = Produto::find($id);
+	    $produto->delete();
+
+	    return redirect()
+        ->action('ProdutoController@lista');
 	}
 
 	public function produtosJson() {
