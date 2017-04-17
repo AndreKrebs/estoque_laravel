@@ -15,6 +15,7 @@
 			<td>{{$p->nome}}</td>
 			<td>{{$p->valor}}</td>
 			<td>{{$p->descricao}}</td>
+			<td>{{$p->tamanho}}</td>
 			<td>{{$p->quantidade}}</td>
 			<td>
 				<a href="/produtos/mostra/{{$p->id}}">

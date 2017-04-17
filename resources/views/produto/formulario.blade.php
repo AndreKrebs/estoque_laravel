@@ -20,6 +20,10 @@
 		<input  type="text" name="valor" class="form-control"/>
 	</div>
 	<div class="form-group">
+		<label>Tamanho</label>
+		<input type="string" name="tamanho" class="form-control"/>
+	</div>
+	<div class="form-group">
 		<label>Quantidade</label>
 		<input type="number" name="quantidade" class="form-control"/>
 	</div>

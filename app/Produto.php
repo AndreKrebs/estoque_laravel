@@ -12,7 +12,7 @@ class Produto extends Model {
 	public $timestamps = false; 
 
 	// adicionado $fillable para passar array direto na hora de salvar, Ex.: Produto::create(Request::all());
-	protected $fillable = array('nome', 'descricao', 'valor', 'quantidade');
+	protected $fillable = array('nome', 'descricao', 'valor', 'tamanho', 'quantidade');
 
 	// não permite passar um valor diferente para o ID
 	protected $guarded = ['id'];
