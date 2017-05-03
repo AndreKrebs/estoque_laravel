@@ -1,8 +1,10 @@
 <?php namespace estoque\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 use estoque\Produto;
 use Request;
+use estoque\Http\Requests\ProdutosRequest;
+// use Validator;
 
 class ProdutoController extends Controller{
 
@@ -76,17 +78,41 @@ class ProdutoController extends Controller{
 		
 	}*/
 
-	public function adiciona(){
+	public function adiciona(ProdutosRequest $request){
 
 		// assim...
 		/*
 	    $params = Request::all();
 	    $produto = new Produto($params);
 	    $produto->save();
-		*/
-
+		
 		// ou assim e com menos codigo
 		Produto::create(Request::all());
+		*/
+
+		// validando os dados do form com Validator
+		/*$validator = Validator::make(
+		    [
+		      'nome' => Request::input('nome'),
+		      'descricao' => Request::input('descricao'),
+		      'valor' => Request::input('valor'),
+		      'quantidade' => Request::input('quantidade')
+		    ],
+		    [
+		      'nome' => 'required|min:5'
+		      'descricao' => 'required|max:255',
+		      'valor' => 'required|numeric',
+		      'quantidade' => 'required|numeric'
+		    ]
+		);
+
+		if ($validator->fails())
+	  	{
+		    return redirect()->action('ProdutoController@novo');
+	  	}*/
+
+		Produto::create($request->all());
+		
 
 	    return redirect()
 	        ->action('ProdutoController@lista')
