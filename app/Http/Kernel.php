@@ -16,6 +16,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
 		'estoque\Http\Middleware\VerifyCsrfToken',
+		'estoque\Http\Middleware\Autorizacao',
 	];
 
 	/**

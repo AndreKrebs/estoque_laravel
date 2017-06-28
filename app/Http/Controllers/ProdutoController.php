@@ -8,10 +8,12 @@ use estoque\Http\Requests\ProdutosRequest;
 
 class ProdutoController extends Controller{
 
+	/*
+	// para aplicar um middleware especifico no controller
 	public function __construct()
   	{	
-    	$this->middleware('auth');
-  	}
+    	$this->middleware('autorizacao',);
+  	}*/
 
 	/*public function lista() {
 
