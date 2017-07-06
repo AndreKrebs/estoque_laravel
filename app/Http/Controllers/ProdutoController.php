@@ -4,6 +4,7 @@
 use estoque\Produto;
 use Request;
 use estoque\Http\Requests\ProdutosRequest;
+use estoque\Categoria;
 // use Validator;
 
 class ProdutoController extends Controller{
@@ -53,7 +54,7 @@ class ProdutoController extends Controller{
 
 	public function novo() {
 
-		return view('produto.formulario');
+		return view('produto.formulario')->with('categorias', Categoria::all());
 	}
 
 	/*public function adiciona() {

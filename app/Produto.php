@@ -12,10 +12,15 @@ class Produto extends Model {
 	public $timestamps = false; 
 
 	// adicionado $fillable para passar array direto na hora de salvar, Ex.: Produto::create(Request::all());
-	protected $fillable = array('nome', 'descricao', 'valor', 'tamanho', 'quantidade');
+	protected $fillable = array('nome', 'descricao', 'valor', 'tamanho', 'quantidade', 'categoria_id');
 
 	// não permite passar um valor diferente para o ID
 	protected $guarded = ['id'];
+
+	// informa o relacionamento de categorias com produto
+	public function categoria() {
+		return $this->belongsTo('estoque\Categoria');
+	}
 
 }
 
